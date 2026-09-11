@@ -17,7 +17,11 @@ pipeline {
 
         stage('Docker Test') {
             steps {
-                bat 'docker --version'
+                bat '''
+                    set PATH=C:\\Users\\HP\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin;%PATH%
+                    docker --version
+                    docker run hello-world
+                '''
             }
         }
     }
