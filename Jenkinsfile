@@ -1,5 +1,4 @@
 pipeline {
-
     agent any
 
     stages {
@@ -13,6 +12,12 @@ pipeline {
         stage('Run Tests') {
             steps {
                 bat 'python manage.py test'
+            }
+        }
+
+        stage('Docker Test') {
+            steps {
+                bat 'docker --version'
             }
         }
     }
