@@ -34,5 +34,20 @@ pipeline {
                 '''
             }
         }
+
+        stage('Deploy') {
+            steps {
+                bat '''
+                    set PATH=C:\\Users\\HP\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin;%PATH%
+
+                    docker stop django-management-app >nul 2>&1
+                    docker rm django-management-app >nul 2>&1
+
+                    docker run -d -p 8000:8000 --name django-management-app django-management:latest
+
+                    docker ps --filter "name=django-management-app"
+                '''
+            }
+        }
     }
 }
